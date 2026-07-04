@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loop — Circular Economy Operating System</title>
+    <meta
+      name="description"
+      content="An AI-powered ESG & circular economy operating system for enterprise end-of-life device recovery — with a live Claude Copilot. Built by Acey Magallanes."
+    />
+    <!-- Social share (LinkedIn / X) -->
+    <meta property="og:title" content="Loop — Circular Economy Operating System" />
+    <meta
+      property="og:description"
+      content="AI-powered ESG control tower for enterprise end-of-life device recovery, with a live Claude Copilot that answers grounded in the data."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aceymagallanes.github.io/circular-esg-os/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0b1e27;
+        --ink-soft: #33505c;
+        --ink-faint: #6b8390;
+        --canvas: #f4f7f8;
+        --panel: #ffffff;
+        --line: #dde6e8;
+        --hp: #0096d6;
+        --teal: #0e6c77;
+        --teal-deep: #0a4e56;
+        --loop: #2fa37a;
+        --violet: #6c5ce0;
+        --signal: #e08a2b;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        color: var(--ink);
+        background: var(--canvas);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+      .mono { font-family: "IBM Plex Mono", monospace; }
+      .caps { text-transform: uppercase; letter-spacing: 0.14em; }
+      .display { font-family: "Space Grotesk", sans-serif; }
+
+      /* ── hero ── */
+      header.hero {
+        background:
+          radial-gradient(1200px 500px at 70% -10%, rgba(0, 150, 214, 0.18), transparent 60%),
+          linear-gradient(160deg, #0b1e27 0%, #0a4e56 100%);
+        color: #fff;
+        padding: 26px 0 84px;
+      }
+      .nav { display: flex; align-items: center; justify-content: space-between; padding: 6px 0 40px; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .mark {
+        width: 40px; height: 40px; border-radius: 12px;
+        background: linear-gradient(135deg, var(--teal), var(--hp));
+        display: grid; place-items: center; box-shadow: 0 6px 18px -6px rgba(0, 150, 214, 0.6);
+      }
+      .brand b { font-family: "Space Grotesk", sans-serif; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+      .brand .tag { font-size: 9.5px; color: rgba(255, 255, 255, 0.6); }
+      .nav-links { display: flex; gap: 22px; font-size: 13.5px; }
+      .nav-links a { color: rgba(255, 255, 255, 0.78); text-decoration: none; }
+      .nav-links a:hover { color: #fff; }
+
+      .eyebrow { font-size: 11px; color: rgba(255, 255, 255, 0.65); margin-bottom: 16px; }
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(34px, 5.4vw, 60px);
+        line-height: 1.04; font-weight: 700; letter-spacing: -0.02em; max-width: 15ch;
+      }
+      .lede { margin-top: 20px; font-size: clamp(15px, 1.7vw, 18px); color: rgba(255, 255, 255, 0.82); max-width: 62ch; }
+      .cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 9px; padding: 12px 20px; border-radius: 11px;
+        font-size: 14.5px; font-weight: 600; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
+      }
+      .btn-primary { background: #fff; color: var(--ink); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4); }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5); }
+      .btn-ghost { background: rgba(255, 255, 255, 0.09); color: #fff; border: 1px solid rgba(255, 255, 255, 0.22); }
+      .btn-ghost:hover { background: rgba(255, 255, 255, 0.16); }
+      .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--loop); box-shadow: 0 0 0 4px rgba(47, 163, 122, 0.25); }
+
+      /* ── metric strip ── */
+      .metrics { margin-top: 54px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; overflow: hidden; }
+      .metric { background: rgba(255, 255, 255, 0.04); padding: 18px 18px; }
+      .metric .v { font-family: "Space Grotesk", sans-serif; font-size: 26px; font-weight: 700; }
+      .metric .l { font-size: 10.5px; color: rgba(255, 255, 255, 0.62); margin-top: 3px; }
+
+      /* ── sections ── */
+      section { padding: 72px 0; }
+      .kicker { font-size: 11px; color: var(--teal); font-weight: 600; margin-bottom: 10px; }
+      h2 { font-family: "Space Grotesk", sans-serif; font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; letter-spacing: -0.015em; }
+      .sub { margin-top: 12px; color: var(--ink-soft); max-width: 64ch; font-size: 15.5px; }
+
+      .grid { margin-top: 34px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; box-shadow: 0 1px 2px rgba(11,30,39,0.04), 0 10px 30px -18px rgba(11,30,39,0.14); }
+      .card .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 600; padding: 4px 9px; border-radius: 999px; margin-bottom: 12px; }
+      .card h3 { font-family: "Space Grotesk", sans-serif; font-size: 17px; font-weight: 600; }
+      .card p { margin-top: 7px; color: var(--ink-soft); font-size: 14px; }
+
+      .tech { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 8px; }
+      .tech span { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft); background: #eaf0f1; border: 1px solid var(--line); border-radius: 8px; padding: 6px 11px; }
+
+      .banner { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: #fff; border-radius: 20px; padding: 44px; text-align: center; }
+      .banner h2 { color: #fff; }
+      .banner p { margin: 12px auto 24px; color: rgba(255, 255, 255, 0.85); max-width: 56ch; }
+
+      footer { border-top: 1px solid var(--line); padding: 34px 0 48px; color: var(--ink-faint); font-size: 13px; }
+      footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; }
+      footer a { color: var(--ink-soft); text-decoration: none; }
+      footer a:hover { color: var(--ink); }
+
+      @media (max-width: 720px) {
+        .metrics { grid-template-columns: repeat(2, 1fr); }
+        .grid { grid-template-columns: 1fr; }
+        .nav-links { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <nav class="nav">
+          <div class="brand">
+            <div class="mark">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12a7 7 0 0 1 11.9-5" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                <path d="M17 3.6V7h-3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M19 12a7 7 0 0 1-11.9 5" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                <path d="M7 20.4V17h3.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <b>Loop</b>
+              <div class="tag mono caps">Circular Economy OS</div>
+            </div>
+          </div>
+          <div class="nav-links">
+            <a href="#modules">Modules</a>
+            <a href="#tech">How it's built</a>
+            <a href="https://github.com/aceymagallanes/circular-esg-os" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </nav>
+
+        <div class="eyebrow mono caps">AI · ESG · Circular Economy · Business Transformation</div>
+        <h1>The AI operating system for circular device recovery.</h1>
+        <p class="lede">
+          Loop is an ESG &amp; circular-economy control tower for enterprise end-of-life device recovery across
+          Asia-Pacific &amp; Japan — from collection through reuse, refurbishment, harvest and certified material
+          recovery. It pairs data-scientist-grade analytics with a live AI Copilot that answers, grounded in the numbers,
+          in your board's language.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://circular-esg-os.vercel.app" target="_blank" rel="noopener">
+            <span class="dot"></span> View live demo
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/aceymagallanes/circular-esg-os" target="_blank" rel="noopener">
+            View source on GitHub →
+          </a>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><div class="v">658K</div><div class="l">Assets recovered / yr</div></div>
+          <div class="metric"><div class="v">62.5%</div><div class="l">Circularity rate</div></div>
+          <div class="metric"><div class="v">78.3Kt</div><div class="l">CO₂e avoided</div></div>
+          <div class="metric"><div class="v">4</div><div class="l">Integrated modules</div></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="modules">
+      <div class="wrap">
+        <div class="kicker mono caps">One operating system · four modules</div>
+        <h2>From live analytics to audit-ready disclosure.</h2>
+        <p class="sub">
+          Every module reads from the same data spine, so the picture stays consistent from the shop floor to the board
+          pack — and the AI Copilot re-grounds itself on whichever module is in focus.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <span class="pill" style="background: rgba(14, 108, 119, 0.12); color: var(--teal)">● Analytics</span>
+            <h3>Circular Economy Control Tower</h3>
+            <p>Executive KPIs plus data-science visuals — material-flow Sankey, circularity forecast with confidence bands, CO₂e waterfall, second-life cohort matrix, APJ network map, and a ±2σ anomaly scan.</p>
+          </div>
+          <div class="card">
+            <span class="pill" style="background: rgba(108, 92, 224, 0.12); color: var(--violet)">● Operations</span>
+            <h3>Smart Product Take-Back</h3>
+            <p>A live reverse-logistics pipeline from end-of-life request to disposition, with SLA tracking and an AI recommender that routes each returned batch to its highest-value recovery pathway.</p>
+          </div>
+          <div class="card">
+            <span class="pill" style="background: rgba(0, 150, 214, 0.12); color: var(--hp)">● Assurance</span>
+            <h3>ESG Evidence Vault</h3>
+            <p>Audit-readiness scoring and claim-to-evidence traceability — every disclosed figure traced to its chain-of-custody, certificates and downstream attestations, with gaps flagged for sign-off.</p>
+          </div>
+          <div class="card">
+            <span class="pill" style="background: rgba(47, 163, 122, 0.12); color: var(--loop)">● Generative</span>
+            <h3>AI ESG Reporting</h3>
+            <p>A disclosure studio that drafts board summaries and GRI 306 / ESRS E5 narratives from the live figures via Claude — grounded in the data and mapped to the frameworks the committee cares about.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tech" style="padding-top: 0">
+      <div class="wrap">
+        <div class="banner">
+          <h2>See the AI Copilot answer, live.</h2>
+          <p>
+            Ask it "what's driving our circularity rate?" or "explain the flagged anomaly" — it responds like a senior
+            circular-economy analyst, streaming its answer token-by-token, grounded entirely in the on-screen data.
+          </p>
+          <a class="btn btn-primary" href="https://circular-esg-os.vercel.app" target="_blank" rel="noopener">
+            <span class="dot"></span> Open the live demo
+          </a>
+        </div>
+
+        <div style="margin-top: 56px">
+          <div class="kicker mono caps">How it's built</div>
+          <h2>Modern, production-shaped stack.</h2>
+          <p class="sub">React single-page app on Vite, hand-built SVG data visualisations, and a streaming serverless AI function — the API key stays server-side, never in the browser.</p>
+          <div class="tech">
+            <span>React + TypeScript</span>
+            <span>Vite</span>
+            <span>Tailwind CSS</span>
+            <span>D3 (scale · shape · sankey)</span>
+            <span>Claude Opus 4.8</span>
+            <span>Vercel Edge Functions</span>
+            <span>SSE streaming</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap row">
+        <div>
+          Built by <strong style="color: var(--ink)">Acey Magallanes</strong> — Customer &amp; Business Transformation ·
+          AI Automation · Circular Economy
+        </div>
+        <div style="display: flex; gap: 18px">
+          <a href="https://circular-esg-os.vercel.app" target="_blank" rel="noopener">Live demo</a>
+          <a href="https://github.com/aceymagallanes/circular-esg-os" target="_blank" rel="noopener">Source</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
